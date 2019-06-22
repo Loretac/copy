@@ -1,3 +1,32 @@
+
+
+/* Robot Condensed */
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+
 body {
-  background-color: tan;
+    background-color: tan;
+}
+
+.outer-shell{
+    position:relative;
+    margin:auto;
+    background-color:white;
+    width: 800px;
+    height: 795px;
+}
+
+#chat-transcript{
+    position:absolute;
+    left: 50px; top: 50px;
+    font: 18px "Roboto Condensed";
+    letter-spacing: 4px;
+}
+
+#conversation-date{
+    position:absolute;
+    right: 50px; top:50px;
+    font: 18px "Roboto";
+    color: #9a9a9a;
 }
