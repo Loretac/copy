@@ -40,10 +40,35 @@ hr {
     background-color: #eeeeee;
 }
 
-.messageFrom{
-    width: 500px;
-    height: 100px;
-    background-color: green;
+.message-from{
+    display:inline-block;
+    position:absolute;
+    top:30px; right:50px;
+    width: 600px;
+    height: 150px;
+    background-color: #f3f3f3;
+}
+
+#chat-region {
+    position:relative;
+    display:inline-block;
+    top:110px;
+    height:685px;
+    width:800px;
+    /*background-color: #eeeeee;*/
+}
+
+.message-container {
+    position:absolute;
+
+    font: 16px "Roboto";
+    line-height: 25px;
+    padding:25px;
+    
+}
+
+.message-text {
+
 }
 
 
