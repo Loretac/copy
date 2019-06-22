@@ -9,6 +9,7 @@ body {
     background-color: tan;
 }
 
+/*The whole application window*/
 .outer-shell{
     position:relative;
     margin:auto;
@@ -17,6 +18,7 @@ body {
     height: 795px;
 }
 
+/*Text box containing "CHAT TRANSCRIPT"*/
 #chat-transcript{
     position:absolute;
     left: 50px; top: 50px;
@@ -24,6 +26,7 @@ body {
     letter-spacing: 4px;
 }
 
+/*Text box containing conversation date*/
 #conversation-date{
     position:absolute;
     right: 50px; top:50px;
@@ -31,6 +34,7 @@ body {
     color: #9a9a9a;
 }
 
+/*Line above conversation*/
 hr {
     position: absolute;
     top: 100px; right:50px;
@@ -40,13 +44,15 @@ hr {
     background-color: #eeeeee;
 }
 
-.message-from{
+.message-from-bubble{
     display:inline-block;
     position:absolute;
     top:30px; right:50px;
     width: 600px;
     height: 150px;
     background-color: #f3f3f3;
+
+
 }
 
 #chat-region {
@@ -58,7 +64,8 @@ hr {
     /*background-color: #eeeeee;*/
 }
 
-.message-container {
+/*Container with text of message*/
+.message-text-container {
     position:absolute;
 
     font: 16px "Roboto";
@@ -67,8 +74,51 @@ hr {
     
 }
 
-.message-text {
+/*Whole container for received messages. Includes avatar and
+message bubble*/
+.message-from {
+    /*position:relative;*/
+
+    
+}
+
+/*Whole container for sent messages. Includes avatar and
+message bubble*/
+.message-to {
 
 }
+
+/*Temporary for testing individual message*/
+#message-1 {
+    background-color: #EE82EE;
+        width: 800px;
+    height: 180px;
+
+}
+
+.avatar-from {
+    position:absolute;
+
+}
+
+.avatar-to {
+    position:absolute;
+    top:500px;
+}
+
+/*Temporary for testing individual message*/
+#message-2 {
+    background-color: #7FFFD4;
+        width: 800px;
+    height: 200px;
+}
+
+.avatar {
+    border-radius:50%;
+    width:50px;
+    height:50px;
+}
+
+
 
 
