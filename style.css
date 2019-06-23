@@ -44,23 +44,7 @@ hr {
     background-color: #eeeeee;
 }
 
-.message-from-bubble{
-    display:inline-block;
-    position:absolute;
-    top:30px; right:50px;
-    width: 600px;
-    height: 150px;
-    background-color: #f3f3f3;
-}
 
-.message-to-bubble{
-    display:inline-block;
-    position:absolute;
-    top:30px; left:50px;
-    width: 600px;
-    height: 150px;
-    background-color: #f3f3f3;
-}
 
 #chat-region {
     position:relative;
@@ -69,6 +53,11 @@ hr {
     height:685px;
     width:800px;
     /*background-color: #eeeeee;*/
+}
+
+.message {
+    /*position:absolute;*/
+    width:800px;
 }
 
 /*Container with text of message*/
@@ -81,22 +70,49 @@ hr {
     
 }
 
+/*Whole container for sent messages. Includes avatar and
+message bubble*/
+.message-to {
+    position:relative;
+    /*background-color: #7FFFD4;*/
+
+}
+
 /*Whole container for received messages. Includes avatar and
 message bubble*/
 .message-from {
     position:relative;
-background-color: #EE82EE;
+/*background-color: #EE82EE;*/
  
-    
 }
 
+.message-from-bubble{
+    display:inline-block;
+    position:absolute;
+    top:30px; right:50px;
+    width: 600px;
+    
+    background-color: #f3f3f3;
+}
+
+.message-to-bubble{
+    display:inline-block;
+    position:absolute;
+    top:30px; left:50px;
+    width: 600px;
+    height: 150px;
+    background-color: #f3f3f3;
+}
+
+/*Temporary CSS classes and IDs*/
+
 #message1 {
-       width: 800px;
+       
     height: 180px;
 }
 
 #message2 {
-            width: 800px;
+    width: 800px;
     height: 180px;
 }
 
@@ -104,13 +120,29 @@ background-color: #EE82EE;
     height: 161px;
 }
 
-/*Whole container for sent messages. Includes avatar and
-message bubble*/
-.message-to {
-    position:relative;
-    background-color: #7FFFD4;
-
+#message4 {
+    height: 126px;
 }
+
+.message-1-bubble {
+    height: 150px;
+}
+
+.message-2-bubble {
+    height: 150px;
+}
+
+.message-3-bubble {
+    height: 131px;
+}
+
+.message-4-bubble {
+    height: 96px;
+}
+
+
+
+
 
 .focus {
     /*Shadow:
@@ -126,9 +158,7 @@ message bubble*/
     background-color: #FFFFFF !important;
 }
 
-.message {
-    /*position:absolute;*/
-}
+
 
 /*Applies to all avatars*/
 .avatar {
