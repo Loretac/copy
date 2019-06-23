@@ -51,8 +51,15 @@ hr {
     width: 600px;
     height: 150px;
     background-color: #f3f3f3;
+}
 
-
+.message-to-bubble{
+    display:inline-block;
+    position:absolute;
+    top:30px; left:50px;
+    width: 600px;
+    height: 150px;
+    background-color: #f3f3f3;
 }
 
 #chat-region {
@@ -77,47 +84,74 @@ hr {
 /*Whole container for received messages. Includes avatar and
 message bubble*/
 .message-from {
-    /*position:relative;*/
-
+    position:relative;
+background-color: #EE82EE;
+ 
     
+}
+
+#message1 {
+       width: 800px;
+    height: 180px;
+}
+
+#message2 {
+            width: 800px;
+    height: 180px;
+}
+
+#message3 {
+    height: 161px;
 }
 
 /*Whole container for sent messages. Includes avatar and
 message bubble*/
 .message-to {
-
-}
-
-/*Temporary for testing individual message*/
-#message-1 {
-    background-color: #EE82EE;
-        width: 800px;
-    height: 180px;
-
-}
-
-.avatar-from {
-    position:absolute;
-
-}
-
-.avatar-to {
-    position:absolute;
-    top:500px;
-}
-
-/*Temporary for testing individual message*/
-#message-2 {
+    position:relative;
     background-color: #7FFFD4;
-        width: 800px;
-    height: 200px;
+
 }
 
+.focus {
+    /*Shadow:
+    Opacity: 13%
+    Distance: 15px down
+    Size: 50px
+    Color: black
+    Spread: 0px
+
+    box-shadow: offset-x | offset-y | blur-radius | spread-radius | color;
+    */
+    box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.13) !important;
+    background-color: #FFFFFF !important;
+}
+
+.message {
+    /*position:absolute;*/
+}
+
+/*Applies to all avatars*/
 .avatar {
     border-radius:50%;
     width:50px;
     height:50px;
+
 }
+
+/*Applies to avatars of received messages*/
+.avatar-from {
+    position:absolute;
+    top:42px; /*12px from top of chat bubble*/
+    left:50px;
+}
+
+/*Applies to avatars of sent messages*/
+.avatar-to {
+    position:absolute;
+    top:42px;
+    right:50px;
+}
+
 
 
 
