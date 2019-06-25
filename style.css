@@ -165,11 +165,13 @@ hr {
 
 
 .name {
-    position:absolute;
-    bottom:20px; left:26px;
+    position:relative;
+    /*display:inline-block;*/
+    float:left;
+    bottom:0px; left:25px;
     font:18px "Roboto";
     font-weight:bold;
-    letter-spacing: -0.8px;/*Estimate for Photoshop Optical Kerning*/
+
 }
 
 .name.user {
@@ -179,6 +181,35 @@ hr {
 .name.friend {
     color:#ff5d5d;
 
+}
+
+.clock {
+    position:relative;
+    display:inline-block;
+    float:left;
+    left:55px;
+    /*Center image vertically*/
+    top:50%;
+    transform: translateY(-50%);
+}
+
+.time {
+    position:relative;
+    display:inline-block;
+    float:left;
+    left:58px;
+    top:50%;
+    transform: translateY(-50%);
+    font:12px "Roboto";
+    font-weight:bold;
+}
+
+.message-footer {
+    position:absolute;
+    bottom:20px;
+    height:20px;
+    width:600px;
+  
 }
 
 
