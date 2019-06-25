@@ -56,8 +56,8 @@ hr {
 }
 
 .message {
-    /*position:absolute;*/
     width:800px;
+    position:relative;
 }
 
 /*Container with text of message*/
@@ -70,39 +70,23 @@ hr {
     
 }
 
-/*Whole container for sent messages. Includes avatar and
-message bubble*/
-.message-to {
-    position:relative;
-    /*background-color: #7FFFD4;*/
-
-}
-
-/*Whole container for received messages. Includes avatar and
-message bubble*/
-.message-from {
-    position:relative;
-/*background-color: #EE82EE;*/
- 
-}
-
-.message-from-bubble{
+.message-bubble {
     display:inline-block;
     position:absolute;
-    top:30px; right:50px;
-    width: 600px;
-    
-    background-color: #f3f3f3;
+    top:30px;
+    width:600px;
+    background-color:#f3f3f3;
 }
 
-.message-to-bubble{
-    display:inline-block;
-    position:absolute;
-    top:30px; left:50px;
-    width: 600px;
-    height: 150px;
-    background-color: #f3f3f3;
+.message-bubble.friend {
+    right:50px;
 }
+
+.message-bubble.user {
+    left:50px;
+}
+
+
 
 /*Temporary CSS classes and IDs*/
 
@@ -112,7 +96,6 @@ message bubble*/
 }
 
 #message2 {
-    width: 800px;
     height: 180px;
 }
 
@@ -162,43 +145,40 @@ message bubble*/
 
 /*Applies to all avatars*/
 .avatar {
+    position:absolute;
+    top:42px;/*12px from top of chat bubble*/
     border-radius:50%;
     width:50px;
     height:50px;
 
+
 }
 
-/*Applies to avatars of received messages*/
-.avatar-from {
-    position:absolute;
-    top:42px; /*12px from top of chat bubble*/
-    left:50px;
-}
-
-/*Applies to avatars of sent messages*/
-.avatar-to {
-    position:absolute;
-    top:42px;
+.avatar.user {
     right:50px;
 }
 
-.sender-name {
-    position:absolute;
-    bottom:20px; left:26px;
-    font: 18px "Roboto";
-    font-weight: bold;
-    color:#ff5d5d;
-    letter-spacing:-0.8px; /*Estimate for Photoshop Optical Kerning*/
-
+.avatar.friend {
+    left:50px;
 }
 
-.receiver-name {
+
+
+.name {
     position:absolute;
     bottom:20px; left:26px;
-    font: 18px "Roboto";
-    font-weight: bold;
+    font:18px "Roboto";
+    font-weight:bold;
+    letter-spacing: -0.8px;/*Estimate for Photoshop Optical Kerning*/
+}
+
+.name.user {
     color:#5da2ff;
-    letter-spacing:-0.8px;
+}
+
+.name.friend {
+    color:#ff5d5d;
+
 }
 
 
