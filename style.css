@@ -188,8 +188,17 @@ message bubble*/
     font: 18px "Roboto";
     font-weight: bold;
     color:#ff5d5d;
-    letter-spacing:-0.8px;
+    letter-spacing:-0.8px; /*Estimate for Photoshop Optical Kerning*/
 
+}
+
+.receiver-name {
+    position:absolute;
+    bottom:20px; left:26px;
+    font: 18px "Roboto";
+    font-weight: bold;
+    color:#5da2ff;
+    letter-spacing:-0.8px;
 }
 
 
