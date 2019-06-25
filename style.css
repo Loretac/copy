@@ -44,8 +44,7 @@ hr {
     background-color: #eeeeee;
 }
 
-
-
+/*Main area containing conversation*/
 #chat-region {
     position:relative;
     display:inline-block;
@@ -55,6 +54,7 @@ hr {
     /*background-color: #eeeeee;*/
 }
 
+/*Block containing all parts of message including message bubble and avatar*/
 .message {
     width:800px;
     position:relative;
@@ -70,22 +70,145 @@ hr {
     
 }
 
+/*All bubbles: contains message, name, time*/
 .message-bubble {
     display:inline-block;
     position:absolute;
     top:30px;
     width:600px;
     background-color:#f3f3f3;
+    border-radius:5px;
 }
 
+/*Bubbles sent by friend*/
 .message-bubble.friend {
     right:50px;
 }
 
+/*Bubbles sent by user*/
 .message-bubble.user {
     left:50px;
 }
 
+/*All arrows: connected to bubbles pointing to avatar*/
+.message-arrow {
+    position:absolute;
+    top:26px;
+    width:0;
+    height:0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent; 
+}
+
+/*Arrows of friends message*/
+.message-arrow.friend {
+    left:-7px;
+    border-right:8px solid #f3f3f3; 
+}
+
+/*Arrows of user message*/
+.message-arrow.user {
+    right:-7px;
+    border-left:8px solid #f3f3f3;
+}
+
+/*Message bubble within a focused message*/
+.focus > .message-bubble {
+    /*Shadow:
+    Opacity: 13%
+    Distance: 15px down
+    Size: 50px
+    Color: black
+    Spread: 0px
+
+    box-shadow: offset-x | offset-y | blur-radius | spread-radius | color;
+    */
+    box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.13) !important;
+    background-color: #FFFFFF !important;
+}
+
+/*Arrow of focused message by user*/
+.focus > .message-bubble > .message-arrow.user {
+    border-left:8px solid white !important;
+}
+
+/*Arrow of focused message by friend*/
+.focus > .message-bubble > .message-arrow.friend {
+    border-right:8px solid white !important;
+}
+
+/*All avatars*/
+.avatar {
+    position:absolute;
+    top:42px;/*12px from top of chat bubble*/
+    border-radius:50%;
+    width:50px;
+    height:50px;
+}
+
+/*User avatar*/
+.avatar.user {
+    right:50px;
+}
+
+/*Friend avatar*/
+.avatar.friend {
+    left:50px;
+}
+
+/*All names*/
+.name {
+    position:relative;
+    /*display:inline-block;*/
+    float:left;
+    bottom:0px; left:25px;
+    font:18px "Roboto";
+    font-weight:bold;
+
+}
+
+/*User's name*/
+.name.user {
+    color:#5da2ff;
+}
+
+/*Friend's name*/
+.name.friend {
+    color:#ff5d5d;
+
+}
+
+/*Clock icon next to name*/
+.clock {
+    position:relative;
+    display:inline-block;
+    float:left;
+    left:55px;
+    /*Center image vertically*/
+    top:50%;
+    transform: translateY(-50%);
+}
+
+/*Time next to clock icon*/
+.time {
+    position:relative;
+    display:inline-block;
+    float:left;
+    left:58px;
+    top:50%;
+    transform: translateY(-50%);
+    font:12px "Roboto";
+    font-weight:bold;
+}
+
+/*Area containing name, clock, time*/
+.message-footer {
+    position:absolute;
+    bottom:20px;
+    height:20px;
+    width:600px;
+  
+}
 
 
 /*Temporary CSS classes and IDs*/
@@ -122,97 +245,5 @@ hr {
 .message-4-bubble {
     height: 96px;
 }
-
-
-
-
-
-.focus {
-    /*Shadow:
-    Opacity: 13%
-    Distance: 15px down
-    Size: 50px
-    Color: black
-    Spread: 0px
-
-    box-shadow: offset-x | offset-y | blur-radius | spread-radius | color;
-    */
-    box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.13) !important;
-    background-color: #FFFFFF !important;
-}
-
-
-
-/*Applies to all avatars*/
-.avatar {
-    position:absolute;
-    top:42px;/*12px from top of chat bubble*/
-    border-radius:50%;
-    width:50px;
-    height:50px;
-
-
-}
-
-.avatar.user {
-    right:50px;
-}
-
-.avatar.friend {
-    left:50px;
-}
-
-
-
-.name {
-    position:relative;
-    /*display:inline-block;*/
-    float:left;
-    bottom:0px; left:25px;
-    font:18px "Roboto";
-    font-weight:bold;
-
-}
-
-.name.user {
-    color:#5da2ff;
-}
-
-.name.friend {
-    color:#ff5d5d;
-
-}
-
-.clock {
-    position:relative;
-    display:inline-block;
-    float:left;
-    left:55px;
-    /*Center image vertically*/
-    top:50%;
-    transform: translateY(-50%);
-}
-
-.time {
-    position:relative;
-    display:inline-block;
-    float:left;
-    left:58px;
-    top:50%;
-    transform: translateY(-50%);
-    font:12px "Roboto";
-    font-weight:bold;
-}
-
-.message-footer {
-    position:absolute;
-    bottom:20px;
-    height:20px;
-    width:600px;
-  
-}
-
-
-
 
 
