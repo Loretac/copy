@@ -82,15 +82,24 @@ hr {
 
 /*Container with text of message*/
 .message-text-container {
-    position:absolute;
-    /*display:block;*/
-
+    /*position:absolute;*/
+    display:block;
+    overflow:auto;
     font: 16px "Roboto";
     line-height: 24px;
-    padding:25px;
+    padding:25px 25px 0px 25px; /*T R B L*/
     
 }
 
+
+
+/*
+.clearfix::after { 
+   content: " ";
+   display: block; 
+   height: 0; 
+   clear: both;
+}*/
 
 /*Temporary CSS classes and IDs*/
 /**/
@@ -113,7 +122,7 @@ hr {
 }
 
 #message-1-bubble{
-    height:150px;
+
 }
 
 #message-1-bubble:after {
@@ -216,9 +225,9 @@ hr {
 
 /*All names*/
 .name {
-    position:relative;
+    /*position:relative;*/
     /*display:inline-block;*/
-    float:left;
+    /*float:left;*/
     bottom:0px; left:25px;
     font:18px "Roboto";
     font-weight:bold;
@@ -238,10 +247,11 @@ hr {
 
 /*Clock icon next to name*/
 .clock {
-    position:relative;
+ /*   position:relative;
     display:inline-block;
-    float:left;
-    left:55px;
+    float:left;*/
+    position:relative;
+    left:30px;
     /*Center image vertically*/
     top:50%;
     transform: translateY(-50%);
@@ -249,22 +259,26 @@ hr {
 
 /*Time next to clock icon*/
 .time {
-    position:relative;
+ /*   position:relative;
     display:inline-block;
-    float:left;
-    left:58px;
-    top:50%;
-    transform: translateY(-50%);
+    float:left;*/
+    /*display:inline-block;*/
+    position:relative;
+    left:30px;
+    bottom:2px;
+/*    top:50%;
+    transform: translateY(-50%);*/
     font:12px "Roboto";
     font-weight:bold;
 }
 
 /*Area containing name, clock, time*/
 .message-footer {
-    position:absolute;
+    /*position:absolute;*/
     bottom:20px;
-    height:20px;
+    
     width:600px;
+    padding:20px 25px;
   
 }
 
