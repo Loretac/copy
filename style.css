@@ -60,16 +60,6 @@ hr {
     position:relative;
 }
 
-/*Container with text of message*/
-.message-text-container {
-    position:absolute;
-
-    font: 16px "Roboto";
-    line-height: 24px;
-    padding:25px;
-    
-}
-
 /*All bubbles: contains message, name, time*/
 .message-bubble {
     display:inline-block;
@@ -89,6 +79,74 @@ hr {
 .message-bubble.user {
     left:50px;
 }
+
+/*Container with text of message*/
+.message-text-container {
+    position:absolute;
+    /*display:block;*/
+
+    font: 16px "Roboto";
+    line-height: 24px;
+    padding:25px;
+    
+}
+
+
+/*Temporary CSS classes and IDs*/
+/**/
+
+#message1 {
+       
+    height: 180px;
+}
+
+#message2 {
+    height: 180px;
+}
+
+#message3 {
+    height: 161px;
+}
+
+#message4 {
+    height: 126px;
+}
+
+#message-1-bubble{
+    height:150px;
+}
+
+#message-1-bubble:after {
+    /*height:150px;*/
+    /*height: auto;*/
+    /*overflow:hidden;*/
+
+/*    content: " "; 
+    display: block;
+    clear: both;*/
+}
+
+
+.message-2-bubble {
+    height: 150px;
+}
+
+.message-3-bubble {
+    height: 131px;
+}
+
+.message-4-bubble {
+    height: 96px;
+}
+
+
+
+
+
+
+
+
+
 
 /*All arrows: connected to bubbles pointing to avatar*/
 .message-arrow {
@@ -211,39 +269,5 @@ hr {
 }
 
 
-/*Temporary CSS classes and IDs*/
-
-#message1 {
-       
-    height: 180px;
-}
-
-#message2 {
-    height: 180px;
-}
-
-#message3 {
-    height: 161px;
-}
-
-#message4 {
-    height: 126px;
-}
-
-.message-1-bubble {
-    height: 150px;
-}
-
-.message-2-bubble {
-    height: 150px;
-}
-
-.message-3-bubble {
-    height: 131px;
-}
-
-.message-4-bubble {
-    height: 96px;
-}
 
 
