@@ -14,11 +14,16 @@ request.onload = function() {
     // Define who the main user is... 
     var mainUser = getMainUser();
 
-    addMessage(data["data"]["messages"][0], mainUser);
+    // addMessage(data["data"]["messages"][0], mainUser);
 
     console.log(data["data"]);
 
     console.log(data["data"]["conversationDate"]);
+
+    for(var i = 0; i < data["data"]["messages"].length; i++){
+        addMessage(data["data"]["messages"][i], mainUser);
+        console.log(i);
+    }
 
 
   } else {
@@ -42,43 +47,92 @@ function getMainUser(){
 
 // Adds a message to the DOM
 function addMessage(messageObject, mainUser){
+
+    var chatRegion = document.getElementById("chat-region");
+    var messageNum = chatRegion.childElementCount+1;
+
+
+
     console.log(messageObject);
     console.log(mainUser);
 
-    // document.getElementById("chat-region").innerHTML =
+    // create an HTML div
+    var msgDiv = document.createElement("div");
 
-    // `
-    //             <div class="message friend" id="message1">
 
-    //             <img class="avatar friend" src="https://randomuser.me/api/portraits/women/2.jpg">
 
-    //             <span class="message-bubble message-1-bubble friend">
-    //                 <span class="message-arrow friend">
-    //                 </span>
-    //                 <span class="message-text-container friend">
+
+    msgDiv.innerHTML = 
+    `
+               
+
+                <img class="avatar">
+
+                <span class="message-bubble">
+                    <span class="message-arrow">
+                    </span>
+                    <span class="message-text-container">
                       
-    //                         Hi Charlie! It was good meeting you for coffee the other day, I would love to talk more about your autonomous car start up! Here's my email: webtrabel@email.com
-                  
                     
-    //                 </span>
+                    </span>
 
 
-    //                 <div class="message-footer">
-    //                     <span class="name friend">
-    //                         Mygel van Trable
-    //                     </span>
-    //                     <span class="clock">
-    //                         <img src="clock_icon.png">
-    //                     </span>
-    //                     <span class="time">
-    //                         1:41 PM
-    //                     </span>
+                    <div class="message-footer">
+                        <span class="name">
+                            
+                        </span>
+                        <span class="clock">
+                            <img src="clock_icon.png">
+                        </span>
+                        <span class="time">
+                            1:41 PM
+                        </span>
 
-    //                 </div>
+                    </div>
 
-    //             </span>
+                </span>
+
+    `
+
+msgDiv.classList.add("message");
+msgDiv.classList.add("clearfix");
 
 
-    //         </div>
-    // `;
+// assign correct classes
+    if(messageObject["username"] == mainUser){
+        msgDiv.classList.add("user");
+        console.log("user: " + messageObject["message"]);
+    }
+    else{
+        msgDiv.classList.add("friend");
+        console.log("friend: " + messageObject["message"]);
+    }
+
+    if(messageObject["focused"] == true){
+        msgDiv.classList.add("focus");
+    }
+
+// Add avatar
+var avatar = msgDiv.querySelector(".avatar");
+avatar.src = messageObject["image"];
+
+var container = msgDiv.querySelector(".message-bubble > .message-text-container");
+container.textContent = messageObject["message"];
+
+var name = msgDiv.querySelector(".message-bubble > .message-footer > .name");
+name.textContent = messageObject["username"];
+
+var time = msgDiv.querySelector(".message-bubble > .message-footer > .time");
+time.textContent = messageObject["timestamp"];
+
+
+
+
+
+
+    console.log("adding child");
+    document.getElementById("chat-region").appendChild(msgDiv);
+
+    
+
 };
