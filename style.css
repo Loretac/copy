@@ -58,12 +58,16 @@ hr {
 .message {
     width:800px;
     position:relative;
+    display:block;
+    /*padding:50px;*/
+
 }
 
 /*All bubbles: contains message, name, time*/
 .message-bubble {
-    display:inline-block;
-    position:absolute;
+    /*display:inline-block;*/
+    /*position:absolute;*/
+
     top:30px;
     width:600px;
     background-color:#f3f3f3;
@@ -71,14 +75,21 @@ hr {
 }
 
 /*Bubbles sent by friend*/
-.message-bubble.friend {
+.friend > .message-bubble {
     right:50px;
+    float:right;
+    margin-right:50px;
+    margin-top:30px;
 }
 
 /*Bubbles sent by user*/
-.message-bubble.user {
+.user > .message-bubble {
+    float:left;
+    margin-left:50px;
+    margin-top:30px;
     left:50px;
 }
+
 
 /*Container with text of message*/
 .message-text-container {
@@ -93,91 +104,49 @@ hr {
 
 
 
-/*
+
 .clearfix::after { 
    content: " ";
    display: block; 
    height: 0; 
    clear: both;
-}*/
-
-/*Temporary CSS classes and IDs*/
-/**/
-
-#message1 {
-       
-    height: 180px;
 }
-
-#message2 {
-    height: 180px;
-}
-
-#message3 {
-    height: 161px;
-}
-
-#message4 {
-    height: 126px;
-}
-
-#message-1-bubble{
-
-}
-
-#message-1-bubble:after {
-    /*height:150px;*/
-    /*height: auto;*/
-    /*overflow:hidden;*/
-
-/*    content: " "; 
-    display: block;
-    clear: both;*/
-}
-
-
-.message-2-bubble {
-    height: 150px;
-}
-
-.message-3-bubble {
-    height: 131px;
-}
-
-.message-4-bubble {
-    height: 96px;
-}
-
-
-
-
-
-
-
-
 
 
 /*All arrows: connected to bubbles pointing to avatar*/
 .message-arrow {
-    position:absolute;
-    top:26px;
+    /*position:absolute;*/
+    margin-top:26px;
     width:0;
     height:0;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent; 
+
 }
 
 /*Arrows of friends message*/
-.message-arrow.friend {
-    left:-7px;
+.friend > .message-bubble > .message-arrow {
+    /*left:-7px;*/
     border-right:8px solid #f3f3f3; 
+    float:left;
+    margin-left:-7px;
+    margin-top:30px;
+
+
 }
 
+
 /*Arrows of user message*/
-.message-arrow.user {
-    right:-7px;
+.user > .message-bubble >.message-arrow {
+    /*right:-7px;*/
     border-left:8px solid #f3f3f3;
+        /*right:50px;*/
+    float:right;
+    margin-right:-7px;
+    margin-top:30px;
 }
+
+
 
 /*Message bubble within a focused message*/
 .focus > .message-bubble {
@@ -195,18 +164,18 @@ hr {
 }
 
 /*Arrow of focused message by user*/
-.focus > .message-bubble > .message-arrow.user {
-    border-left:8px solid white !important;
+.focus.user > .message-bubble > .message-arrow {
+    border-left:8px solid red !important;
 }
 
 /*Arrow of focused message by friend*/
-.focus > .message-bubble > .message-arrow.friend {
+.focus.friend > .message-bubble > .message-arrow {
     border-right:8px solid white !important;
 }
 
 /*All avatars*/
 .avatar {
-    position:absolute;
+    /*position:absolute;*/
     top:42px;/*12px from top of chat bubble*/
     border-radius:50%;
     width:50px;
@@ -214,42 +183,47 @@ hr {
 }
 
 /*User avatar*/
-.avatar.user {
-    right:50px;
+.user > .avatar {
+    /*right:50px;*/
+
+    float:right;
+    margin-right:50px;
+    margin-top:40px;
 }
 
 /*Friend avatar*/
-.avatar.friend {
-    left:50px;
+.friend > .avatar {
+    /*left:50px;*/
+    float:left;
+    margin-left:50px;
+    margin-top:40px;
 }
 
 /*All names*/
 .name {
-    /*position:relative;*/
-    /*display:inline-block;*/
-    /*float:left;*/
     bottom:0px; left:25px;
     font:18px "Roboto";
     font-weight:bold;
+}
 
+
+/*Friend's name*/
+.friend > .message-bubble > .message-footer > .name {
+    color:#ff5d5d;
 }
 
 /*User's name*/
-.name.user {
+.user > .message-bubble > .message-footer > .name {
     color:#5da2ff;
 }
 
-/*Friend's name*/
-.name.friend {
-    color:#ff5d5d;
 
-}
+
+
+
 
 /*Clock icon next to name*/
 .clock {
- /*   position:relative;
-    display:inline-block;
-    float:left;*/
     position:relative;
     left:30px;
     /*Center image vertically*/
@@ -259,10 +233,6 @@ hr {
 
 /*Time next to clock icon*/
 .time {
- /*   position:relative;
-    display:inline-block;
-    float:left;*/
-    /*display:inline-block;*/
     position:relative;
     left:30px;
     bottom:2px;
