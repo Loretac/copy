@@ -52,6 +52,7 @@ hr {
     width:800px;
     background-color: #ffffff;
     padding-bottom: 50px;
+    min-height:500px;
 }
 
 /*Block containing all parts of message including message bubble and avatar*/

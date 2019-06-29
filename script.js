@@ -2,27 +2,64 @@
 // Asynchronous request using AJAX
 var request = new XMLHttpRequest();
 
-
 request.onload = function() {
   if (request.status >= 200 && request.status < 400) {
     // Success!
     var data = JSON.parse(request.responseText);
 
+    const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+    ]
+
+    const days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday'
+    ]
+
+    // https://css-tricks.com/everything-you-need-to-know-about-date-in-javascript/
+
+    // Do not do this below!!
+    // var convoDate = new Date(data["data"]["conversationDate"]);
+
+    // instead...
+
     // Set the conversation date
-    document.getElementById("conversation-date").textContent = data["data"]["conversationDate"];
+    var date = data["data"]["conversationDate"];
+
+    var str = date.split("-");
+    console.log(str);
+
+
+    convoDate = new Date(str[0], str[1]-1, str[2]);
+
+    document.getElementById("conversation-date").textContent = days[convoDate.getDay()] + ", " + months[convoDate.getMonth()] + " " + convoDate.getDate() + ", " + convoDate.getFullYear();
+
+    console.log(data);
+
+    // document.getElementById("conversation-date").textContent = data["data"]["conversationDate"];
 
     // Define who the main user is... 
     var mainUser = getMainUser();
 
-    // addMessage(data["data"]["messages"][0], mainUser);
-
-    console.log(data["data"]);
-
-    console.log(data["data"]["conversationDate"]);
-
+ 
     for(var i = 0; i < data["data"]["messages"].length; i++){
         addMessage(data["data"]["messages"][i], mainUser);
-        console.log(i);
     }
 
 
@@ -123,7 +160,15 @@ var name = msgDiv.querySelector(".message-bubble > .message-footer > .name");
 name.textContent = messageObject["username"];
 
 var time = msgDiv.querySelector(".message-bubble > .message-footer > .time");
-time.textContent = messageObject["timestamp"];
+
+var d = new Date(messageObject["timestamp"]);
+// alert(d.getTime());
+// alert(d.toLocaleTimeString(undefined));
+
+time.textContent = d.toLocaleTimeString(undefined, {
+    hour:'numeric',
+    minute:'2-digit'
+});
 
 
 
