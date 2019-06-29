@@ -1,4 +1,3 @@
-
 // Asynchronous request using AJAX
 var request = new XMLHttpRequest();
 
@@ -6,6 +5,57 @@ request.onload = function() {
   if (request.status >= 200 && request.status < 400) {
     // Success!
     var data = JSON.parse(request.responseText);
+
+    // Set the conversation date
+    setConvoDate(data);
+
+    // Define who the main user is... 
+    var mainUser = getMainUser();
+
+    // Add all messages
+    for(var i = 0; i < data["data"]["messages"].length; i++){
+        addMessage(data["data"]["messages"][i], mainUser);
+    }
+
+
+  } else {
+    // We reached our target server, but it returned an error
+
+  }
+};
+
+request.onerror = function() {
+  // There was a connection error of some sort
+};
+
+request.open('GET', 'https://api.myjson.com/bins/18ce70', true);
+request.send(); 
+
+
+/* ==========================================================================
+   The chat transcript will show through this person's point of view.
+   Their messages will show the left, and their avatar on the right.
+   ========================================================================== */
+function getMainUser(){
+    return "Charlie Hemn";
+}
+
+/* ==========================================================================
+   Sets the date of the conversation
+   ========================================================================== */
+function setConvoDate(data){
+    /*
+
+    https://css-tricks.com/everything-you-need-to-know-about-date-in-javascript/
+
+    DO NOT do this:
+    var convoDate = new Date(data["data"]["conversationDate"]);
+
+    Creating date objects from strings leads to inconsistency between browsers.
+    Instead, create date object using arguments.
+
+    */
+
 
     const months = [
     'January',
@@ -32,152 +82,98 @@ request.onload = function() {
     'Saturday'
     ]
 
-    // https://css-tricks.com/everything-you-need-to-know-about-date-in-javascript/
+    var dateStr = data["data"]["conversationDate"];
+    // Date as string: "2018-10-14"
 
-    // Do not do this below!!
-    // var convoDate = new Date(data["data"]["conversationDate"]);
+    var dateArr = dateStr.split("-");
+    // Now in format ["2018", "10", "14"]
 
-    // instead...
+    var convoDate = new Date(dateArr[0], dateArr[1]-1, dateArr[2]);
 
-    // Set the conversation date
-    var date = data["data"]["conversationDate"];
-
-    var str = date.split("-");
-    console.log(str);
-
-
-    convoDate = new Date(str[0], str[1]-1, str[2]);
-
-    document.getElementById("conversation-date").textContent = days[convoDate.getDay()] + ", " + months[convoDate.getMonth()] + " " + convoDate.getDate() + ", " + convoDate.getFullYear();
-
-    console.log(data);
-
-    // document.getElementById("conversation-date").textContent = data["data"]["conversationDate"];
-
-    // Define who the main user is... 
-    var mainUser = getMainUser();
-
- 
-    for(var i = 0; i < data["data"]["messages"].length; i++){
-        addMessage(data["data"]["messages"][i], mainUser);
-    }
-
-
-  } else {
-    // We reached our target server, but it returned an error
-
-  }
-};
-
-request.onerror = function() {
-  // There was a connection error of some sort
-};
-
-request.open('GET', 'https://api.myjson.com/bins/18ce70', true);
-request.send(); 
-
-
-function getMainUser(){
-    return "Charlie Hemn";
+    document.getElementById("conversation-date").textContent = 
+        days[convoDate.getDay()] +
+        ", " + months[convoDate.getMonth()] +
+        " " + convoDate.getDate() +
+        ", " + convoDate.getFullYear();
 }
 
 
-// Adds a message to the DOM
+
+/* ==========================================================================
+   Adds a message to the DOM
+   ========================================================================== */
 function addMessage(messageObject, mainUser){
-
-    var chatRegion = document.getElementById("chat-region");
-    var messageNum = chatRegion.childElementCount+1;
-
-
-
-    console.log(messageObject);
-    console.log(mainUser);
 
     // create an HTML div
     var msgDiv = document.createElement("div");
 
-
-
-
+    // Fill div with message template
     msgDiv.innerHTML = 
     `
-               
+        <img class="avatar">
 
-                <img class="avatar">
-
-                <span class="message-bubble">
-                    <span class="message-arrow">
-                    </span>
-                    <span class="message-text-container">
-                      
-                    
-                    </span>
+        <span class="message-bubble">
+            <span class="message-arrow"></span>
+            <span class="message-text-container"></span>
 
 
-                    <div class="message-footer">
-                        <span class="name">
-                            
-                        </span>
-                        <span class="clock">
-                            <img src="clock_icon.png">
-                        </span>
-                        <span class="time">
-                            1:41 PM
-                        </span>
+            <div class="message-footer">
+                <span class="name"></span>
 
-                    </div>
-
+                <span class="clock">
+                    <img src="clock_icon.png">
                 </span>
 
+                <span class="time"></span>
+
+            </div>
+
+        </span>
     `
 
-msgDiv.classList.add("message");
-msgDiv.classList.add("clearfix");
+    // Assign correct classes to message
+    msgDiv.classList.add("message");
+    msgDiv.classList.add("clearfix"); // has children of position:absolute
 
-
-// assign correct classes
+    // User or friend?
     if(messageObject["username"] == mainUser){
         msgDiv.classList.add("user");
-        console.log("user: " + messageObject["message"]);
     }
     else{
         msgDiv.classList.add("friend");
-        console.log("friend: " + messageObject["message"]);
     }
 
+    // Focused?
     if(messageObject["focused"] == true){
         msgDiv.classList.add("focus");
     }
 
-// Add avatar
-var avatar = msgDiv.querySelector(".avatar");
-avatar.src = messageObject["image"];
-
-var container = msgDiv.querySelector(".message-bubble > .message-text-container");
-container.textContent = messageObject["message"];
-
-var name = msgDiv.querySelector(".message-bubble > .message-footer > .name");
-name.textContent = messageObject["username"];
-
-var time = msgDiv.querySelector(".message-bubble > .message-footer > .time");
-
-var d = new Date(messageObject["timestamp"]);
-// alert(d.getTime());
-// alert(d.toLocaleTimeString(undefined));
-
-time.textContent = d.toLocaleTimeString(undefined, {
-    hour:'numeric',
-    minute:'2-digit'
-});
+    // Add avatar
+    var avatar = msgDiv.querySelector(".avatar");
+    avatar.src = messageObject["image"];
 
 
+    // Add message to text container
+    var container = msgDiv.querySelector(".message-bubble > .message-text-container");
+    container.textContent = messageObject["message"];
 
 
+    // Add username
+    var name = msgDiv.querySelector(".message-bubble > .message-footer > .name");
+    name.textContent = messageObject["username"];
 
 
-    console.log("adding child");
+    // Add timestamp
+    var time = msgDiv.querySelector(".message-bubble > .message-footer > .time");
+
+    var rawTime = new Date(messageObject["timestamp"]);
+
+    // Convert raw time to 1:30 PM format
+    time.textContent = rawTime.toLocaleTimeString(undefined, {
+        hour:'numeric',
+        minute:'2-digit'
+    });
+
+    // Add the completed message element to the chat region
     document.getElementById("chat-region").appendChild(msgDiv);
-
-    
-
-};
+}
