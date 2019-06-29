@@ -1,0 +1,215 @@
+/* Roboto Regulard and Condensed */
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
+
+
+body {
+    background-color: #eeeeee;
+}
+
+/* ==========================================================================
+   PROGRAM WINDOW + ACCOMPANYING ELEMENTS
+   ========================================================================== */
+.outer-shell{ /*The application window*/
+    position:relative;
+    margin:auto;
+    background-color:white;
+    width: 800px;
+
+    /*Shadow:
+    Opacity: 13%
+    Distance: 15px down
+    Size: 50px
+    Color: black
+    Spread: 0px
+
+    box-shadow: offset-x | offset-y | blur-radius | spread-radius | color;
+    */
+    box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.13); 
+}
+#chat-transcript{ /*Text box containing "CHAT TRANSCRIPT"*/
+    float:left;
+    margin-left:50px;
+    margin-top:50px;
+    font: 18px "Roboto Condensed";
+    letter-spacing: 4px;
+}
+#conversation-date{ /*Text box containing conversation date*/
+    position:absolute;
+    right: 50px; top:50px;
+    font: 18px "Roboto";
+    color: #9a9a9a;
+}
+hr { /*Decorative line above conversation*/
+    position: absolute;
+    top: 100px; right:50px;
+    width: 700px;
+    height: 2px;
+    border: 0;
+    background-color: #eeeeee;
+}
+#chat-region { /*Region containing conversation*/
+    display:inline-block;
+    margin-top:40px;
+    width:800px;
+    background-color: #ffffff;
+    padding-bottom: 50px;
+    min-height:500px;
+}
+
+/* ==========================================================================
+   MESSAGE: contains all parts of each message including bubble and avatar
+   ========================================================================== */
+.message {
+    width:800px;
+    position:relative;
+    display:block;
+}
+
+/* ==========================================================================
+   MESSAGE BUBBLES: contains message, name, time
+   ========================================================================== */
+.message-bubble {
+    width:600px;
+    margin-top:30px;
+    background-color:#f3f3f3;
+    border-radius:5px;
+}
+.friend > .message-bubble {
+    /*Bubbles sent by friend*/
+    float:right;
+    margin-right:50px;
+}
+.user > .message-bubble {
+    /*Bubbles sent by user*/
+    float:left;
+    margin-left:50px;
+}
+
+/* ==========================================================================
+   MESSAGE CONTAINER: Within chat bubble, container with only text of message
+   ========================================================================== */
+.message-text-container {
+    display:block;
+    font: 16px "Roboto";
+    line-height: 24px;
+    padding:25px 25px 0px 25px; /*Top Right Bottom Left*/
+}
+
+/* ==========================================================================
+   MESSAGE ARROWS: connected to bubbles pointing towards avatar
+   ========================================================================== */
+.message-arrow {
+    margin-top:26px;
+    width:0;
+    height:0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent; 
+}
+.friend > .message-bubble > .message-arrow {
+    /*Arrows of friends message*/
+    border-right:8px solid #f3f3f3; 
+    float:left;
+    margin-left:-7px;
+}
+.user > .message-bubble >.message-arrow {
+    /*Arrows of user message*/
+    border-left:8px solid #f3f3f3;
+    float:right;
+    margin-right:-7px;
+}
+
+/* ==========================================================================
+   AVATARS
+   ========================================================================== */
+.avatar { /*All avatars*/
+    margin-top:40px;
+    border-radius:50%;
+    width:50px;
+    height:50px;
+}
+.user > .avatar { /*User avatar*/
+    float:right;
+    margin-right:50px;
+}
+.friend > .avatar { /*Friend avatar*/
+    float:left;
+    margin-left:50px;
+}
+
+/* ==========================================================================
+   MESSAGE FOOTER: Area containing username, clock, time
+   ========================================================================== */
+.message-footer {
+    width:600px;
+    padding:20px 25px; /*Top/Bottom Left/Right*/
+}
+
+/* ==========================================================================
+   USERNAMES
+   ========================================================================== */
+.name { /*All usernames*/
+    font:18px "Roboto";
+    font-weight:bold;
+}
+.friend > .message-bubble > .message-footer > .name { /*Friend's name*/
+    color:#ff5d5d;
+}
+.user > .message-bubble > .message-footer > .name { /*User's name*/
+    color:#5da2ff;
+}
+
+/* ==========================================================================
+   CLOCK / TIME
+   ========================================================================== */
+.clock { /*clock icon*/
+    position:relative;
+    left:30px;
+    /*Center image vertically*/
+    top:50%;
+    transform: translateY(-50%);
+}
+.time { /*Time next to clock icon*/
+    position:relative;
+    left:30px;
+    bottom:2px;
+    font:12px "Roboto";
+    font-weight:bold;
+}
+
+/* ==========================================================================
+   FOCUSED MESSAGES
+   ========================================================================== */
+.focus > .message-bubble {
+    /*Message bubble within a focused message*/
+
+    /*Shadow:
+    Opacity: 13%
+    Distance: 15px down
+    Size: 50px
+    Color: black
+    Spread: 0px
+
+    box-shadow: offset-x | offset-y | blur-radius | spread-radius | color;
+    */
+    box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.13) !important;
+    background-color: #FFFFFF !important;
+}
+.focus.user > .message-bubble > .message-arrow {
+    /*Arrow of focused message by user*/
+    border-left:8px solid white !important;
+}
+.focus.friend > .message-bubble > .message-arrow {
+    /*Arrow of focused message by friend*/
+    border-right:8px solid white !important;
+}
+
+/* ==========================================================================
+   CLEARFIX FUNCTION - used to escape floating children elements
+   ========================================================================== */
+.clearfix::after { 
+   content: " ";
+   display: block; 
+   height: 0; 
+   clear: both;
+}
